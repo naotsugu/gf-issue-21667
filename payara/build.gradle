@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+dependencies {
+    compile 'fish.payara.extras:payara-embedded-all:4.1.2.172'
+    compile 'fish.payara.api:payara-api:4.1.2.172'
+
+    compile 'com.h2database:h2:1.4.191'
+}
+
+evaluationDependsOn(':app')
+
+mainClassName = "code.javaee.payara.EmbeddedMain"
+run {
+    args project(':app').war.archivePath.path
+}
+
+
+configurations { micro }
+dependencies { micro 'fish.payara.extras:payara-micro:4.1.2.172' }
+
+task micro(type: JavaExec) {
+    classpath configurations.micro
+    main = 'fish.payara.micro.PayaraMicro'
+    args = ['--deploy', project(':app').war.archivePath.path]
+}
+
+task uber(type: JavaExec) {
+    classpath configurations.micro
+    main = 'fish.payara.micro.PayaraMicro'
+    args = ['--deploy', project(':app').war.archivePath.path,
+            '--outputUberJar', 'uber.jar']
+}
+

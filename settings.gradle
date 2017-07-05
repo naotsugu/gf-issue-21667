@@ -1,0 +1,2 @@
+include 'app', 'payara'
+rootProject.name = 'gf-issue-21667'

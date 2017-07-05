@@ -1,0 +1,17 @@
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        jcenter()
+    }
+}
+
+subprojects {
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+project(':app') {
+}
+
+project(':payara') {
+}
