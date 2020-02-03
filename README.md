@@ -1,6 +1,6 @@
 # gf-issue-21667
 
-https://github.com/javaee/glassfish/issues/21667
+https://github.com/eclipse-ee4j/glassfish/issues/21667
 
 ## Run
 
